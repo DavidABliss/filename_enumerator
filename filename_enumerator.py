@@ -10,7 +10,7 @@ import argparse
 import datetime
 
 parser = argparse.ArgumentParser(description='Number (or renumber) all files in a directory, proceeding alphabetically. Attempt to use the existing filename template or provide a new template with -t')
-parser.add_argument('inputPath', nargs='?', help='path to the files to be renamed', default=os.getcwd())
+parser.add_argument('inputPath', help='path to the files to be renamed')
 parser.add_argument('-t', '--template', action='store', dest='t', required=False, help='a custom template to be used as the basis for all new filenames in the directory')
 parser.add_argument('-i', '--index', nargs='?', default=1, action='store', dest='i', type=int, help='the starting index number, from which all filename numbers will count up')
 parser.add_argument('-d', '--digits', required=False, action='store', dest='d', type=int, help='the number of digits that will be used for file enumeration. default is the minimum number of digits required to enumerate all files')
