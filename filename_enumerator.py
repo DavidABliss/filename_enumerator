@@ -15,21 +15,30 @@ parser.add_argument('-t', '--template', action='store', dest='t', required=False
 parser.add_argument('-i', '--index', nargs='?', default=1, action='store', dest='i', type=int, help='the starting index number, from which all filename numbers will count up')
 parser.add_argument('-d', '--digits', required=False, action='store', dest='d', type=int, help='the number of digits that will be used for file enumeration. default is the minimum number of digits required to enumerate all files')
 parser.add_argument('-v', '--reverse', required=False, action='store_true', dest='v', help='reverse the enumeration, so the alphabetically-last file in the directory become the lowest-numbered')
+parser.add_argument('-f', '--format', required=False, action='store', dest='f', help='specify a particular filetype to be renamed, using its three- or four-digit extension. the script will skip all other file types')
 
 args=parser.parse_args()
 
 dirPath = os.path.abspath(args.inputPath)
 os.chdir(dirPath)
 fileNum = args.i
-os.mkdir(os.path.join(dirPath,'renamed'))
-
+try:
+    os.mkdir(os.path.join(dirPath,'renamed'))
+except FileExistsError:
+    next
+if args.f:
+    targetExtension = args.f.lower()       
 
 def listCompiler(inputPath):
     fileList = []
     
     for item in os.listdir(dirPath):
         if os.path.isfile(item):
-            fileList.append(item)
+            if args.f:
+                if item.endswith(targetExtension):
+                    fileList.append(item)
+            else:
+                fileList.append(item)
     if args.v:
         fileList.reverse()
     if not args.d:
