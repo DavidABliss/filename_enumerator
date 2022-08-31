@@ -27,10 +27,7 @@ try:
 except FileExistsError:
     next
 if args.f:
-    targetExtension = args.f.lower()
-    if targetExtension == 'jpeg':
-        targetExtension == 'jpg'
-        
+    targetExtension = args.f.lower()       
 
 def listCompiler(inputPath):
     fileList = []
