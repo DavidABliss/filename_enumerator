@@ -15,5 +15,7 @@ Use the <code>-d --digits</code> option followed by a number to specify the numb
 Use the <code>-i --index</code> option followed by a number to specify the first number in the sequence for the renamed files. By default, the first file in the directory will be given the number 1, but you can use this option if you would like the numbering to start at zero or any number greater than 1.
 
 Use the <code>-v --reverse</code> option to reverse the order of the renamed images. Use this if the files in a directory are in reverse alphabetical order, and the script will sort them so that the file that originally came last alphabetically will now come first.
+  
+Use the <code>-f --format</code> option followed by a file extension to specify a file format to be targeted for renaming. By default, all files in the target directory will be renamed, but you can use this option to rename only files of a certain type, such as JPEGs. Files that have a different extension will be skipped.
 
 To do: Add the ability to specify a specific file format to be targeted for renaming, ignoring all other file formats.
