@@ -22,10 +22,7 @@ args=parser.parse_args()
 dirPath = os.path.abspath(args.inputPath)
 os.chdir(dirPath)
 fileNum = args.i
-try:
-    os.mkdir(os.path.join(dirPath,'renamed'))
-except FileExistsError:
-    next
+
 if args.f:
     targetExtension = args.f.lower()       
 
@@ -50,6 +47,7 @@ def listCompiler(inputPath):
         nameSplitter(file)
 
 def setDigits(fileList):
+    global listCount
     listCount = len(fileList)
     digits = len(str(listCount))
     return(digits)
@@ -74,12 +72,20 @@ def renamer(file, newRoot, extension):
     reportLine = file + ' -> ' + newName
     reportWriter(reportLine)
     fileNum += 1
-    os.rename(file, os.path.join('renamed',newName))
+    try:
+        os.rename(file, newName)
+    except FileExistsError:
+        os.rename(file, (newName + '_TEMP'))
     
 def reportWriter(line):
     time = datetime.datetime.now()
-    stringTime = time.strftime("%Y%m%d%H%M%S")
-    with open(os.path.join(dirPath, 'rename' + stringTime + '.txt'), 'a', encoding='utf-8') as report:
+    stringTime = time.strftime("%Y%m%d-%H%M%S")
+    with open(os.path.join(dirPath, 'rename_' + stringTime + '.txt'), 'a', encoding='utf-8') as report:
         report.write(line + '\n')
 
 listCompiler(dirPath)
+for file in os.listdir(dirPath):
+    if file.endswith('_TEMP'):
+        newName = file.replace('_TEMP', '')
+        os.rename(file, newName)
+print('Renamed ' + str(listCount) + ' files')
