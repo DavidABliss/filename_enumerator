@@ -10,12 +10,12 @@ Currently, the script attempts to preserve the original filename by default, but
 
 Use the <code>-t --template</code> option followed by a string to provide a new template for the renamed files, or if the original filename template doesn't have file numbers separated by an underscore. For example, <code>-t new_template_</code> will produce files named <code>new_template_01, new_template_02, new_template_03, new_template_04</code>, etc. Enclose the template in quotes if it contains a space.
 
+Use the <code>-f --format</code> option followed by a file extension to specify a file format to be targeted for renaming. By default, all files in the target directory will be renamed, but you can use this option to rename only files of a certain type, such as JPEGs. Files that have a different extension will be skipped.
+
 Use the <code>-d --digits</code> option followed by a number to specify the number of digits to be used for the resulting filenames. If this option is not used, the script will use the fewest digits needed to accommodate all files in the directory (i.e. if the directory contains between 10 and 99 files, the renamed files will have two digit numbers).
 
 Use the <code>-i --index</code> option followed by a number to specify the first number in the sequence for the renamed files. By default, the first file in the directory will be given the number 1, but you can use this option if you would like the numbering to start at zero or any number greater than 1.
 
 Use the <code>-v --reverse</code> option to reverse the order of the renamed images. Use this if the files in a directory are in reverse alphabetical order, and the script will sort them so that the file that originally came last alphabetically will now come first.
-  
-Use the <code>-f --format</code> option followed by a file extension to specify a file format to be targeted for renaming. By default, all files in the target directory will be renamed, but you can use this option to rename only files of a certain type, such as JPEGs. Files that have a different extension will be skipped.
 
 To do: Add the ability to specify a specific file format to be targeted for renaming, ignoring all other file formats.
