@@ -43,6 +43,9 @@ def listCompiler(inputPath):
         digits = setDigits(fileList)
     elif args.d:
         digits = args.d
+        global listCount
+        listCount = len(fileList)
+        
     for file in fileList:
         nameSplitter(file)
 
